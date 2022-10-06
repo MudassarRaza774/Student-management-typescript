@@ -2,7 +2,7 @@ import express from 'express'
 const app = express()
 import dotenv from 'dotenv';
 dotenv.config()
-import router from '../routes/studentRoutes'
+import routes from '../routes/studentRoutes'
 import swaggerUiExpress from 'swagger-ui-express'
 const swaggerDocument = require('../swagger/swagger.json')
 
@@ -18,4 +18,4 @@ app.listen(process.env.PORT, () => {
     console.log(`Backend running at port ${process.env.PORT}`)
 })
  
-app.use('/students', router) 
+app.use('/students', routes) 

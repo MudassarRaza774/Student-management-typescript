@@ -1,0 +1,179 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "3.0.0",
+        "title": "Student Management with TypeScript",
+        "description": "Student Management CRUD API's",
+        "license": {
+            "name": "AllZone Technologies"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Students",
+            "description": "API for Students in the system"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/students": {
+            "post": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Create a student in System",
+                "description": "Create new student in System",
+                "parameters": [
+                    {
+                        "name": "Student",
+                        "in": "body",
+                        "description": "Student that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/student"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New Student is created",
+                        "schema": {
+                            "$ref": "#/definitions/student"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Students"
+                ],
+                "summary": "Get all Students in System",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/student"
+                        }
+                    }
+                }
+            }
+        },
+        "/students/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of Student that we want to find",
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "summary": "Get Student with given Id",
+                "tags": [
+                    "Students"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student with given Id"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Student with given ID",
+                "tags": [
+                    "Students"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student is deleted",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Update Student with give ID",
+                "tags": [
+                    "Students"
+                ],
+                "parameters": [
+                    {
+                        "name": "Student",
+                        "in": "body",
+                        "description": "Student with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/updateStudent"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Student is updated"
+                    },
+                    "400": {
+                        "description": "Student updation Failed"
+                    },
+                    "404": {
+                        "description": "Student id not found"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "student": {
+            "required": [
+                "firstName",
+                "lastName",
+                "age",
+                "gender"
+            ],
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                }
+            }
+        },
+        "updateStudent": {
+            "required": [],
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
